@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import AppFooter from "../components/AppFooter";
-import AppNavbar from "../components/AppNavbar";
+import AppChaKraNavBar from "../components/AppChaKraNavBar";
 
 
 type LayoutProps = {
@@ -10,7 +10,7 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <AppNavbar />
+      <AppChaKraNavBar />
 
       {children}
 
