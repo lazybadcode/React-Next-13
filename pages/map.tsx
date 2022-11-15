@@ -4,11 +4,11 @@ import type { ReactElement } from 'react'
 import Layout from '../layouts/Layout'
 import type { NextPageWithLayout } from './_app'
 
-const HomePage: NextPageWithLayout = () => {
-  return <p>Home Page</p>
+const MapPage: NextPageWithLayout = () => {
+  return <p>Map Page</p>
 }
 
-HomePage.getLayout = function getLayout(page: ReactElement) {
+MapPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <Layout>
       {page}
@@ -16,4 +16,4 @@ HomePage.getLayout = function getLayout(page: ReactElement) {
   )
 }
 
-export default HomePage
+export default MapPage

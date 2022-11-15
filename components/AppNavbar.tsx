@@ -8,7 +8,7 @@ import Link from "next/link";
 const AppNavbar = () => {
     return (
         <div>
-            <Link href="/">Home</Link> | <Link href="/about">About</Link>
+            <Link href="/">Home</Link> | <Link href="/map">Map</Link>
         </div>
     );
 }
