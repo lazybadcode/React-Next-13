@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import AppNavbar from "../components/AppNavbar";
 import Image from "next/image"
 import reactLogo from "../public/react1.jpg"
+import { MdHome } from "react-icons/md";
+
 
 export default function AboutPage() {
   const [age, setAge] = useState(30);
@@ -32,7 +33,7 @@ export default function AboutPage() {
     
     return (
       <>
-      <AppNavbar />
+      {/* <AppNavbar /> */}
       <h1>{process.env.NEXT_PUBLIC_APP_NAME}</h1>
       {isShow && <p>Your Age {age}</p>}
 
@@ -48,6 +49,9 @@ export default function AboutPage() {
       <hr/>
       <button onClick={showMsg}>Click Me</button>
       
+
+      <hr/>
+      <MdHome size={40}></MdHome>
 
       </>
 
