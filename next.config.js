@@ -8,6 +8,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'codingthailand.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.codingthailand.com',
+      },
     ],
   },
 }

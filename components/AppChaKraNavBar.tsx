@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 import {
   Box,
   Flex,
@@ -16,31 +16,37 @@ import {
   useColorModeValue,
   Stack,
   Text,
-} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import Link from "next/link"
+  Image,
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import Link from "next/link";
+import { useRouter } from "next/router";
 //const Links = ['Dashboard', 'Projects', 'Team', 'Map'];
 
-const Links = [{label: "Home", href:"/"},
-      {label: "Map", href:"/map"},
-]
+const Links = [
+  { label: "Home", href: "/" },
+  { label: "Product SSR", href: "/product" },
+  { label: "Contact me", href: "/map" },
+];
 
 type NavLinkProps = {
-  href: string,
-  children: ReactNode
-}
+  href: string;
+  classActive: string;
+  children: ReactNode;
+};
 
-const NavLink = ({ href, children }: NavLinkProps) => (
+const NavLink = ({ href, classActive, children }: NavLinkProps) => (
   <Link href={href} passHref={true} legacyBehavior>
     <CLink
       px={2}
       py={1}
-      rounded={'md'}
+      rounded={"md"}
       _hover={{
-        textDecoration: 'none',
-        bg: useColorModeValue('pink.200', 'gray.700'),
+        textDecoration: "none",
+        bg: useColorModeValue("#0d2e49", "gray.700"),
       }}
-      >
+      className={classActive}
+    >
       {children}
     </CLink>
   </Link>
@@ -48,71 +54,87 @@ const NavLink = ({ href, children }: NavLinkProps) => (
 
 export default function AppChaKraNavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const router = useRouter();
   return (
     <>
-      <Box bg={useColorModeValue('blue.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+      <Box bg={useColorModeValue("#5b82a1", "gray.900")} px={4}>
+        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
-            size={'md'}
+            size={"md"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
+            aria-label={"Open Menu"}
+            display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <HStack spacing={8} alignItems={'center'}>
-            <Box>TEST APP</Box>
+          <HStack spacing={8} alignItems={"center"}>
+            <Box>
+              <Text color={"white"} fontWeight={1000}>
+                My Resume
+              </Text>
+            </Box>
+
             <HStack
-              as={'nav'}
+              as={"nav"}
               spacing={4}
-              display={{ base: 'none', md: 'flex' }}>
+              display={{ base: "none", md: "flex" }}
+            >
               {Links.map((menu) => (
-                <NavLink key={menu.label} href={menu.href}>
-                    <Text color={"gray"}>{menu.label}</Text>
+                <NavLink
+                  key={menu.label}
+                  href={menu.href}
+                  classActive={
+                    router.pathname === menu.href ? "menu-active" : ""
+                  }
+                >
+                  <Text color={"#e8edf2"} fontWeight={800}>
+                    {menu.label}
+                  </Text>
                 </NavLink>
               ))}
             </HStack>
           </HStack>
-          <Flex alignItems={'center'}>
+          <Flex alignItems={"center"}>
             <Menu>
               <MenuButton
                 as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
-                minW={0}>
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                  }
+                rounded={"full"}
+                variant={"link"}
+                cursor={"pointer"}
+                minW={0}
+              >
+                <Image
+                  borderRadius="full"
+                  boxSize="40px"
+                  src="/proto-profile.jpg"
+                  alt={`Avatar of `}
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <Link href={"/"}><MenuItem>Home</MenuItem></Link>
+                <Link href={"/map"}><MenuItem>Contact me</MenuItem></Link>
               </MenuList>
             </Menu>
           </Flex>
         </Flex>
 
         {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
-            {Links.map((menu) => (
-                <NavLink key={menu.label} href={menu.href}>
-                    <Text color={"gray"}>{menu.label}</Text>
+          <Box pb={4} display={{ md: "none" }}>
+            <Stack as={"nav"} spacing={4}>
+              {Links.map((menu) => (
+                <NavLink
+                  key={menu.label}
+                  href={menu.href}
+                  classActive={
+                    router.pathname === menu.href ? "menu-active" : ""
+                  }
+                >
+                  <Text color={"gray"}>{menu.label}</Text>
                 </NavLink>
-              ))
-            }
+              ))}
             </Stack>
           </Box>
         ) : null}
       </Box>
-
-      <Box p={4}>Main Content Here</Box>
     </>
   );
 }
