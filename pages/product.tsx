@@ -22,6 +22,7 @@ import { getAPIVersion } from "../services/api.service";
 import { Version } from "../types/version.type";
 import { getProduct } from "../services/product.service";
 import { Product } from "../types/product.type";
+import React from "react";
 
 type Data = {
   message: string;
@@ -69,8 +70,8 @@ const ProductPage: NextPageWithLayout = ({
             {
               products.map((item, index) => {
                   return (
-                    <>
-                        <Card maxW='sm' key={item.id}>
+                    <React.Fragment key={item.id}>
+                        <Card maxW='sm'>
                           <CardBody>
                             <Image
                               src={item.picture}
@@ -99,7 +100,7 @@ const ProductPage: NextPageWithLayout = ({
                             </ButtonGroup>
                           </CardFooter>
                         </Card>
-                    </>
+                    </React.Fragment>
                   )
               })
             }
