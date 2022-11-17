@@ -18,5 +18,5 @@ export class User {
     password!: string
 
     @Column({default:"member"})
-    permission!: string
+    permission?: string
 }

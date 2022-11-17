@@ -3,7 +3,7 @@ import { findByEmailUser, registerUser } from "../../../services/user.service";
 
 // localhost:4000/api/user/register
 export default async function handler( req: NextApiRequest, res: NextApiResponse<any>) {
-      const { body: { fullname, email, password }, method } = req;
+      const { body: { fullname, email, password, permission }, method } = req;
     
       switch (method) {
         case 'POST':
