@@ -23,6 +23,7 @@ import { Version } from "../types/version.type";
 import { getProduct } from "../services/product.service";
 import { Product } from "../types/product.type";
 import React from "react";
+import { findProvinceById } from "../services/province.service";
 
 type Data = {
   message: string;
@@ -43,7 +44,7 @@ export const getServerSideProps: GetServerSideProps<{
 
   //const res = await fetch('https://.../data')
   const data: Data = { message: "Hello SSR", total: 100 };
-
+  
   return {
     props: {
       data,
@@ -65,6 +66,11 @@ const ProductPage: NextPageWithLayout = ({
           สินค้า {data.message} {data.total}
         </Heading>
         <Divider />
+
+        <ul>
+
+          <li></li>
+        </ul>
 
         <SimpleGrid columns={3} spacing={10}>
             {

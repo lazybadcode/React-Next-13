@@ -26,7 +26,8 @@ import { useRouter } from "next/router";
 const Links = [
   { label: "Home", href: "/" },
   { label: "Product SSR", href: "/product" },
-  { label: "Contact me", href: "/map" },
+  { label: "Contact me SSG", href: "/map" },
+  { label: "Province SWR", href: "/province" },
 ];
 
 type NavLinkProps = {

@@ -1,6 +1,10 @@
 import { DataSource } from "typeorm";
+import { Blog } from "../models/blog.model";
 import { Province } from "../models/province.model";
 import { User } from "../models/user.model";
+
+
+
 const db = new DataSource({
   type: "postgres",
   host: process.env.PG_HOST,
@@ -9,9 +13,13 @@ const db = new DataSource({
   password: "password",
   database: "test",
   synchronize: process.env.NODE_ENV !== "production", // dev is true
-  entities: [Province,User],
+  entities: [Province,User,Blog],
 });
 
+
+if(db){
+  console.log("DS !!!!")
+}
 console.log("HOST " + process.env.ORACLE_HOST)
 db.initialize()
   .then(() => {

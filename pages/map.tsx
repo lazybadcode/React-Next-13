@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout'
 import type { NextPageWithLayout } from './_app'
 import { Container, Heading, Text } from '@chakra-ui/react'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { findProvinceById } from '../services/province.service'
 
 type Province = {
   name: string
@@ -26,7 +27,7 @@ export const getStaticProps: GetStaticProps<{ provinces: Province[] }> = async (
   }
 }
 
-const MapPage : NextPageWithLayout = ({provinces }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const MapPage : NextPageWithLayout = ({provinces}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       <Container my={4} maxW={"1200px"}>
@@ -51,5 +52,6 @@ MapPage.getLayout = function getLayout(page: ReactElement) {
     </Layout>
   )
 }
+
 
 export default MapPage
