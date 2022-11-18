@@ -28,6 +28,7 @@ const Links = [
   { label: "Product SSR", href: "/product" },
   { label: "Contact me SSG", href: "/map" },
   { label: "Province SWR", href: "/province" },
+  { label: "Log In", href: "/login" },
 ];
 
 type NavLinkProps = {

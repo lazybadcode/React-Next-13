@@ -2,10 +2,6 @@ import { DeleteResult, UpdateResult } from "typeorm";
 import { connectDB } from "../lib/db";
 import { Province } from "../models/province.model";
 
-//use SWR
-
-
-
 export async function findAllProvince(): Promise<Province[]>{
     const provinceRepository = await (await connectDB()).getRepository(Province)
     return await provinceRepository.find({order:{id:'DESC'}})
